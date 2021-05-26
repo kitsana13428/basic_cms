@@ -26,12 +26,12 @@
         <section class="content">
             <div class="container"> 
                 <figure>
-                    <h1><a href="#">This is post title</a></h1>
+                    <h1><a href="pages.php">This is post title</a></h1>
                     <img width="640" height="360" src="img/001.jpg" alt="">
                     <figcaption>
                         <p>Posted By <strong>Admin</strong>| Published on <strong>2021-05-26</strong></p>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt est, aut molestias maxime natus quod, beatae cum nostrum, atque sunt voluptatibus. Nihil accusamus architecto totam cupiditate optio eum eligendi nesciunt.</p>
-                        <a href="#">Read more</a>
+                        <a href="pages.php">Read more</a>
                     </figcaption>
                 </figure>
                 <figure>
