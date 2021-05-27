@@ -1,3 +1,27 @@
+<?php
+
+    require_once "connect.php";
+
+    session_start();
+
+    if (isset($_POST['login'])){
+        $username = mysqli_real_escape_string($conn, $_POST['username'] );
+        $password = mysqli_real_escape_string($conn, $_POST['password'] );
+
+        $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0){
+            $_SESSION['username'] = $username;
+            echo "<script>alert('Login Successfully');</script>";
+            header("location: index.php");
+        } else {
+            echo "<script>alert('Username or Password is incorrect!');</script>";
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

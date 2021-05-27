@@ -1,3 +1,12 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['username'])) {
+        header("location: login.php");
+    } else {
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +20,7 @@
     
     <header>
         <div class="container">
-            <h1>Welcome to Admin Page Mr.</h1>
+            <h1>Welcome to Admin Page Mr.<?php echo $_SESSION['username']; ?></h1>
         </div>
     </header>
 
@@ -33,3 +42,5 @@
 
 </body>
 </html>
+
+<?php } ?>
