@@ -25,6 +25,7 @@
 
         <section class="content">
             <div class="container"> 
+            <h1>Search Result : </h1>
                 <figure>
                     <h1>This is post title</a></h1>
                     <img width="640" height="360" src="img/001.jpg" alt="">
