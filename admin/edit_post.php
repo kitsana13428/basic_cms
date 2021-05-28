@@ -1,3 +1,30 @@
+<?php
+
+    require_once "connect.php";
+
+    session_start();
+
+    if(!isset($_SESSION['username'])) {
+        header("location: login.php");
+    }
+    if (isset($_GET['edit'])){
+        $edit_id = $_GET['edit'];
+
+        $edit_query = "SELECT * FROM posts WHERE post_id = '$edit_id'";
+
+        $run_edit = mysqli_query($conn, $edit_query);
+
+        while ($edit_row = mysqli_fetch_array($run_edit)) {
+            $post_id = $edit_row['post_id'];
+            $post_title = $edit_row['post_title'];
+            $post_author = $edit_row['post_author'];
+            $post_date = date('y-m-d');
+            $post_image = $edit_row['post_image'];
+            $post_content = $edit_row['post_content'];
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +38,7 @@
     
     <header>
         <div class="container">
-            <h1>Welcome to Admin Page Mr.</h1>
+            <h1>Welcome to Admin Page Mr.<?php echo $_SESSION['username']; ?></h1>
         </div>
     </header>
 
@@ -33,7 +60,7 @@
                         </tr>
                         <tr>
                             <td>Post Title</td>
-                            <td><input type="text" name="title" size="50"></td>
+                            <td><input type="text" name="title" size="50" value="<?php echo $post_title; ?>"></td>
                         </tr>
                         <tr>
                             <td>Post Author</td>

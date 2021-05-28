@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $post_title = $_POST['title'];
     $post_date = date('y-m-d');
     $post_author = $_POST['author'];
-    $post_keywords = $_POST['content'];
+    $post_keywords = $_POST['keywords'];
     $post_content = $_POST['content'];
     $post_image = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
@@ -24,8 +24,6 @@ if (isset($_POST['submit'])) {
     
     if (mysqli_query($conn, $insert_query)) {
         echo "<script>alert('Post published successfully');</script>";
-    }else {
-        echo "<script>alert('Something wrong!');</script>";
     }
 }
 
@@ -43,7 +41,7 @@ if (isset($_POST['submit'])) {
 
 <header>
     <div class="container">
-        <h1>Welcome to Admin Page Mr.</h1>
+        <h1>Welcome to Admin Page Mr.<?php echo $_SESSION['username']; ?></h1>
     </div>
 </header>
 
@@ -57,37 +55,38 @@ if (isset($_POST['submit'])) {
             <h3><a href="logout.php">Log out</a></h3>             
         </div>
         <div class="showinfo">
-            <h1>Welcome to Admin Panel</h1>
-            <form action="insert_post.php" method="post" enctype="multipart/form-data"></form>
+            <h1>Insert Post</h1>
+            <form  method="post" action="insert_post.php" enctype="multipart/form-data">
                 <table width="100%" align="center" border="1">
                     <tr>
-                        <td align="center" colspan="6"><h1>Insert New Post</h1></td>
+                        <td align="center" colspan="6">
+                        <h1>Insert New Post</h1></td>
                     </tr>
                     <tr>
-                        <td>Post Title</td>
+                        <td align="right">Post Title:</td>
                         <td><input type="text" name="title" size="50"></td>
                     </tr>
                     <tr>
-                        <td>Post Author</td>
+                        <td align="right">Post Author :</td>
                         <td><input type="text" name="author" size="50"></td>
                     </tr>
                     <tr>
-                        <td>Post Keywords</td>
+                        <td align="right">Post Keywords:</td>
                         <td><input type="text" name="keywords" size="50"></td>
                     </tr>
                     <tr>
-                        <td>Post image</td>
+                        <td align="right">Post Image:</td>
                         <td><input type="file" name="image" size="50"></td>
                     </tr>
                     <tr>
-                        <td>Post Content</td>
+                        <td align="right">Post Content:</td>
                         <td><textarea name="content"  cols="50" rows="15"></textarea></td>
                     </tr>
                     <tr>
-                        
                         <td align="center" colspan="6"><input type="submit" name="submit" value="Publish Now"></td>
                     </tr>
                 </table>
+            </form>
         </div>
     </div>
 </section>
