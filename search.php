@@ -15,13 +15,7 @@
                 <div class="logo">
                     <h1><a href="index.php">KitsanaCMS</a></h1>
                 </div>
-           
-
-                    <form action="search.php" method="get" enctype="multipart/form-data">
-                        <input type="text" name="value" placeholder="search topic" size="25">
-                        <input type="submit">
-                    </form>
-                </div>
+            </div>
         </header>
 
         <section class="content">
@@ -42,7 +36,7 @@
 
                     while ($search_row = mysqli_fetch_array($run_query)) {
                         $post_id = $search_row['post_id'];
-                        $post_author = $serarch_row['post_author'];
+                        $post_author = $search_row['post_author'];
                         $post_date = date('y-m-d');
                         $post_title = $search_row['post_title'];
                         $post_image = $search_row['post_image'];
@@ -54,7 +48,7 @@
                     <img width="640" height="360" src="img/<?php echo $post_image; ?>" alt="">
                     <figcaption>
                         <p>Posted By <strong><?php echo $post_author; ?></strong>| Published on <strong><?php echo $post_date; ?></strong></p>
-                        <p><?php echo $post_connect; ?></p>
+                        <p><?php echo $post_content; ?></p>
                         <a href="pages.php?id=<?php echo $post_id; ?>">Read more</a>
                       
                     </figcaption>
@@ -66,6 +60,7 @@
                 ?>
                 
             </div> 
-        </section>    
+        </section> 
+
 </body>
 </html>

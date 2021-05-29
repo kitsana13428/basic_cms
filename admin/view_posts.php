@@ -46,6 +46,7 @@
                         <th>Post Title</th>
                         <th>Post Image</th>
                         <th>Post Content</th>
+                        <th>Post Keywords</th>
                         <th>Delete Post</th>
                         <th>Edit Post</th>
                     </tr>
@@ -59,7 +60,7 @@
                             $post_date = $row['post_date'];
                             $post_author = $row['post_author'];
                             $post_title = $row['post_title'];
-        
+                            $post_keywords = $row['post_keywords'];
                             $post_image = $row['post_image'];
                             $post_content = substr($row['post_content'], 0, 100);                   
 
@@ -72,6 +73,7 @@
                          <td><?php echo $post_title; ?></td>
                          <td><img width="80" height="80" src="../img/<?php echo $post_image; ?>"></td>
                          <td><?php echo $post_content; ?></td>
+                         <td><?php echo $post_keywords; ?></td>
                          <td><a href="delete.php?del=<?php echo $post_id; ?>">Delete</a></td>
                          <td><a href="edit_post.php?edit=<?php echo $post_id; ?>">Edit</a></td>
                     </tr>

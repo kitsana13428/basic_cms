@@ -24,7 +24,7 @@ require_once "connect.php";
 
                     <form action="search.php" method="get" enctype="multipart/form-data">
                         <input type="text" name="value" placeholder="search topic" size="25">
-                        <input type="submit">
+                        <input type="submit" name="search" value="search">
                     </form>
                 </div>
         </header>
