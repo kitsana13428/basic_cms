@@ -24,6 +24,9 @@ if (isset($_POST['submit'])) {
     
     if (mysqli_query($conn, $insert_query)) {
         echo "<script>alert('Post published successfully');</script>";
+        header("location: view_posts.php");
+    }else {
+        echo "<script>alert('Something wrong!');</script>";
     }
 }
 

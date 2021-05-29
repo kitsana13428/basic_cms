@@ -1,3 +1,8 @@
+<?php 
+
+require_once "connect.php";
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,33 +31,35 @@
 
         <section class="content">
             <div class="container"> 
+
+            <?php
+
+                $select_posts = "SELECT * FROM posts";
+
+                $run_posts = mysqli_query($conn, $select_posts);
+
+                while ($row = mysqli_fetch_array($run_posts)) {
+                    $post_id = $row['post_id'];
+                    $post_date = $row['post_date'];
+                    $post_author = $row['post_author'];
+                    $post_title = $row['post_title'];
+                    $post_image = $row['post_image'];
+                    $post_content = substr($row['post_content'],0,300);
+                
+
+            ?>
                 <figure>
-                    <h1><a href="pages.php">This is post title</a></h1>
-                    <img width="640" height="360" src="img/001.jpg" alt="">
+                    <h1><a href="pages.php?id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a></h1>
+                    <img width="640" height="360" src="img/<?php echo $post_image; ?>" alt="">
                     <figcaption>
-                        <p>Posted By <strong>Admin</strong>| Published on <strong>2021-05-26</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt est, aut molestias maxime natus quod, beatae cum nostrum, atque sunt voluptatibus. Nihil accusamus architecto totam cupiditate optio eum eligendi nesciunt.</p>
-                        <a href="pages.php">Read more</a>
+                        <p>Posted By <strong><?php echo $post_author; ?></strong>| Published on <strong><?php echo $post_date; ?></strong></p>
+                        <p><?php echo $post_content; ?></p>
+                        <a href="pages.php?id=<?php echo $post_id; ?>">Read more</a>
                     </figcaption>
                 </figure>
-                <figure>
-                    <h1><a href="pages.php">This is post title</a></h1>
-                    <img width="640" height="360" src="img/001.jpg" alt="">
-                    <figcaption>
-                        <p>Posted By <strong>Admin</strong>| Published on <strong>2021-05-26</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt est, aut molestias maxime natus quod, beatae cum nostrum, atque sunt voluptatibus. Nihil accusamus architecto totam cupiditate optio eum eligendi nesciunt.</p>
-                        <a href="pages.php">Read more</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h1><a href="pages.php">This is post title</a></h1>
-                    <img width="640" height="360" src="img/001.jpg" alt="">
-                    <figcaption>
-                        <p>Posted By <strong>Admin</strong>| Published on <strong>2021-05-26</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt est, aut molestias maxime natus quod, beatae cum nostrum, atque sunt voluptatibus. Nihil accusamus architecto totam cupiditate optio eum eligendi nesciunt.</p>
-                        <a href="pages.php">Read more</a>
-                    </figcaption>
-                </figure>
+
+                <?php  } ?>
+                
             </div> 
         </section>    
 </body>

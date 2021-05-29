@@ -1,10 +1,11 @@
+<?php require_once "connect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
+    <title>Search Page</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,15 +27,43 @@
         <section class="content">
             <div class="container"> 
             <h1>Search Result : </h1>
+
+            <?php
+
+                if (isset($_GET['search'])) {
+                    $search_value = $_REQUEST['value'];
+                }
+                if (empty($search_value)) {
+                    echo "<h3 style='margin-top: 2rem; text-align: center; color: red;'>Oops!!</h3>";
+                }else {
+                    $search_query = "SELECT * FROM posts WHERE post_keywords LIKE '%$search_value%'";
+
+                    $run_query = mysqli_query($conn, $search_query);
+
+                    while ($search_row = mysqli_fetch_array($run_query)) {
+                        $post_id = $search_row['post_id'];
+                        $post_author = $serarch_row['post_author'];
+                        $post_date = date('y-m-d');
+                        $post_title = $search_row['post_title'];
+                        $post_image = $search_row['post_image'];
+                        $post_content = substr($search_row['post_content'],0,150);
+                        
+            ?>
                 <figure>
-                    <h1>This is post title</a></h1>
-                    <img width="640" height="360" src="img/001.jpg" alt="">
+                    <h1><a href="page.php?id=<?php echo $post_id; ?><?php echo $post_title; ?>"></a></h1>
+                    <img width="640" height="360" src="img/<?php echo $post_image; ?>" alt="">
                     <figcaption>
-                        <p>Posted By <strong>Admin</strong>| Published on <strong>2021-05-26</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptatum alias expedita impedit voluptates earum nulla magni, quo esse labore amet illo atque eaque quibusdam distinctio quidem nemo totam, repudiandae aspernatur ex accusantium temporibus optio. Libero, accusamus aut fugiat voluptatibus alias, facilis, saepe autem vel consequatur consectetur soluta voluptas voluptatum officiis quaerat suscipit adipisci quas at ad deleniti quae. Provident magni veniam, sit vitae, eveniet nemo ipsa, aspernatur repellat amet dolorum odit sequi doloribus earum consequatur blanditiis maiores quis labore qui quas. Explicabo molestias consectetur ut possimus quia dignissimos temporibus ipsam voluptatibus. Labore quos aliquam repellat magnam consectetur at, pariatur ab distinctio omnis. Possimus id ratione, quidem mollitia aliquid rem ut numquam ullam veritatis sit. Deserunt praesentium esse illum! Molestias asperiores ducimus consectetur eum iste impedit, ut fuga libero nulla ullam dolores obcaecati doloremque nam debitis nemo a. Ipsum officiis incidunt inventore sunt atque nostrum exercitationem earum. At sequi aspernatur possimus accusantium ipsum eveniet impedit ipsam quibusdam natus quod asperiores nobis, veniam sint libero quae obcaecati unde fugiat vel et odit veritatis ratione? Assumenda sunt, error voluptate cum perspiciatis facilis quibusdam minus nesciunt ea saepe? Minus, rem cum? Nihil cumque et incidunt vitae! Velit numquam temporibus eos consequatur, corporis obcaecati quas alias perspiciatis blanditiis labore non explicabo maiores, omnis saepe officia autem culpa totam sint doloremque dolor? Provident nesciunt, repellendus quibusdam ea nemo, eligendi soluta voluptatem rem nostrum porro illum. Reprehenderit voluptatibus sint quibusdam corrupti soluta molestias quaerat necessitatibus eos, obcaecati qui sit magnam beatae veniam et odit consequuntur, perferendis harum eum nemo exercitationem non atque in explicabo expedita? At, ipsa sapiente sunt dignissimos maxime assumenda quidem quam fugiat quis iure sed ipsum culpa ad sit corrupti voluptate, quaerat optio explicabo incidunt totam, aspernatur dolorem repudiandae. Qui pariatur officiis soluta suscipit quis sed obcaecati vitae eligendi ipsa. Placeat, ducimus velit?</p>
+                        <p>Posted By <strong><?php echo $post_author; ?></strong>| Published on <strong><?php echo $post_date; ?></strong></p>
+                        <p><?php echo $post_connect; ?></p>
+                        <a href="pages.php?id=<?php echo $post_id; ?>">Read more</a>
                       
                     </figcaption>
                 </figure>
+
+                <?php
+                            }
+                        }
+                ?>
                 
             </div> 
         </section>    
